@@ -1,6 +1,6 @@
 import { ICommand } from "wokcommands";
 
-import imp from '../../Data/config.json';
+//import imp from '../../Data/config.json';
 
 export default {
 
@@ -16,7 +16,7 @@ export default {
 
     callback: async({message, args, client}) => {
 
-        if (imp.rebot_pass !== args[0]){
+        if (process.env.rebot_pass !== args[0]){
             return `Incorrect Password`
         }
 

@@ -1,0 +1,16 @@
+{
+    "bot_name": "Zero",
+    "bot_description": "A bot with multipurpose feature like fun, moderation and minigames. Go to option for any growing or a massive grown server",
+    "bot_ver": "1.13.0",
+    "node_ver": "16.13.0",
+    "discord_ver": "13.3.1",
+    "owner": ["582955196716679173"],
+    "devs": ["582955196716679173", "720257265533321308"],
+    "dev_names": ["<@582955196716679173>", "<@720257265533321308>"],
+    "credit": "created by a exparienced team of Black Universe",
+    "bu_logo": "https://i.imgur.com/CuBJG8N.png",
+    "bot_logo": "https://i.imgur.com/EeQVQkb.png",
+    "bot_invite": "https://discord.com/api/oauth2/authorize?client_id=908260370177753128&permissions=0&scope=bot",
+    "noicon_img": "https://i.imgur.com/28SFuEz.png",
+    "testserver": ["916228629715890177"]
+}

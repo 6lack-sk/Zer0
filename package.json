@@ -1,0 +1,16 @@
+{
+  "name": "zer0",
+  "version": "1.13.1",
+  "description": "A multi-purpose discord bot",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "6lack",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.3.1",
+    "mongoose": "^6.0.14",
+    "wokcommands": "^1.5.3"
+  }
+}

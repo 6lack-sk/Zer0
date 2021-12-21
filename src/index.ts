@@ -4,7 +4,7 @@ import path from 'path'
 
 import mongoose from 'mongoose'
 
-import config from './Data/config.json'
+//import config from './Data/config.json'
 
 import binfo from './Data/info.json'
 import { Intents } from 'discord.js'
@@ -30,10 +30,10 @@ client.on('ready', () => {
     typeScript: true,
     testServers: binfo.testserver,
     botOwners: binfo.owner,
-    mongoUri: config.database,
+    mongoUri: process.env.database,
     dbOptions: {
       keepAlive: true
     }
   })
 })
-client.login(config.token);
+client.login(process.env.token);
