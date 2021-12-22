@@ -1,4 +1,3 @@
-
 import binfo from"../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
@@ -22,17 +21,17 @@ export default {
             },
             fields: [
                 {
-                    name: `:busts_in_silhouette: **Server Name**`,
+                    name: `» Server Name`,
                     value: `> ${guild.name}`,
-                    inline: true,
+                    inline: false,
                 },
                 {
-                    name: `:id: **Server ID**`,
+                    name: `» Server ID`,
                     value: `> ${guild.id}`,
-                    inline: true,
+                    inline: false,
                 },
                 {
-                    name: `:knot: **Joined on Discord**`,
+                    name: `» Server Created on`,
                     value: `> ${new Date(guild.createdTimestamp).toLocaleDateString()}`,
                     inline: false,
                 },

@@ -2,6 +2,7 @@
 import binfo from "../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
+import { GuildMember } from "discord.js";
 
 export default {
     
@@ -10,44 +11,46 @@ export default {
     category: `Info`,
     description: `Shaows user details`,
 
-    callback: async({message, member}) => {
+    callback: async({message, member, guild}) => {
 
-        const user = message.mentions.users.first() || member
+        if(!guild) return 'Run this command in a server'
+
+        const user = message.mentions.users.first() || message.author
 
         if(!member.joinedTimestamp) return 'Is it a guild. I have doubt. Please try in a guild channel.'
 
         const userinfo = {
             color: 0xff0000,
-            title: `User Information`,
+            title: `Information about ${user.username}`,
             thumbnail: {
                 url: `${user.displayAvatarURL()}`,
             },
             fields: [
                 {
-                    name: `:busts_in_silhouette: **User Tag**`,
-                    value: `> ${user}`,
-                    inline: true,
+                    name: `» Server Nickname`,
+                    value: `> ${user.toString()}`,
+                    inline: false
                 },
                 {
-                    name: `:id: **User ID**`,
+                    name: `» User Tag`,
+                    value: `> ${user.tag}`,
+                    inline: false,
+                },
+                {
+                    name: `» User ID`,
                     value: `> ${user.id}`,
-                    inline: true,
+                    inline: false,
                 },
                 {
-                    name: `:busts_in_silhouette: **Server Nickname**`,
-                    value: `> ${member.nickname}`,
-                    inline: true,
+                    name: `» Joined on Discord`,
+                    value: `> ${new Date(user.createdTimestamp).toLocaleDateString()}`,
+                    inline: false,
                 },
-                {
-                    name: `:robot: **Bot**`,
-                    value: `> ${user}`,
-                    inline: true
-                },
-                {
-                    name: `:knot: **Joined on Server**`,
-                    value: `**> ${new Date(member.joinedTimestamp).toLocaleDateString()}**`,
-                    inline: true,
-                },
+                //{
+                //    name: `:knot: **Joined on Server**`,
+                  //  value: `**> ${new Date().toLocaleDateString()}**`,
+                    //inline: true,
+                //},
             ],
             timestamp: new Date(),
             footer: {
