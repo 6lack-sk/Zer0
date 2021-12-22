@@ -4,14 +4,32 @@
   "description": "A multi-purpose discord bot",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ."
   },
   "author": "6lack",
   "license": "MIT",
   "dependencies": {
+    "@types/express": "^4.17.13",
     "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
+    "express": "^4.17.2",
     "mongoose": "^6.0.14",
+    "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4",
     "wokcommands": "^1.5.3"
-  }
+  },
+  "devDependencies": {
+    "node": "^16.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6lack-sk/Zer0.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/6lack-sk/Zer0/issues"
+  },
+  "homepage": "https://github.com/6lack-sk/Zer0#readme"
 }

@@ -2,6 +2,8 @@ import DiscordJS  from 'discord.js'
 import WOKCommands from 'wokcommands'
 import path from 'path'
 
+import keepAliveser from './server'
+
 import mongoose from 'mongoose'
 
 //import config from './Data/config.json'
@@ -36,4 +38,6 @@ client.on('ready', () => {
     }
   })
 })
+
+keepAliveser()
 client.login(process.env.token);
