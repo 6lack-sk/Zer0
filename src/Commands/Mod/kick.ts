@@ -2,6 +2,7 @@ import {Interaction, MessageComponentInteraction, TextChannel } from "discord.js
 import { ICommand } from "wokcommands";
 
 import setlogchannel from "../../Module/loging/setlogchannel";
+import modAction from "../../Module/mod-action";
 import modaction from "../../Module/modaction_confirm";
 
 export default {
@@ -17,7 +18,7 @@ export default {
     expectedArgs: `<user> [reason]`,
     expectedArgsTypes: [`USER`, `STRING`],
 
-    callback: async({message, args, member,guild, channel}) => {
+    callback: async({message, args, member: staff,guild, channel}) => {
 
         if(!guild) return 'This command is only available in Server.'
 
@@ -46,7 +47,7 @@ export default {
             return
         }
 
-        if(user == member){
+        if(user == staff){
             const error = {
                 color: 0xff0000,
                 title: `:x: Oh really :bangbang: `,
@@ -107,37 +108,10 @@ export default {
                     components: []
                 })
 
-                const result = await setlogchannel.findById(guild.id)
+                const action = `${user.displayName} has been kicked`
 
-                if(!result) return
-
-                    const {channelID} = result
-
-                    const logchannel = guild.channels.cache.get(channelID) as TextChannel
-
-                const taken = {
-                    color: 0xff0000,
-                    title: `User kicked`,
-                    fields: [
-                        {
-                            name: `Name`,
-                            value: `${user}`,
-                            inline: true,
-                        },
-                        {
-                            name: `Responsible Mod`,
-                            value: `${message.member}`,
-                            inline: true,
-                        },
-                        {
-                            name: `Reason`,
-                            value: `${reason}`,
-                            inline: false,
-                        }
-                    ]
-                }
-                logchannel.send({embeds: [taken]})
-                    }
+                modAction(action, user, staff, reason, guild)
+            }
         }) 
 
     }

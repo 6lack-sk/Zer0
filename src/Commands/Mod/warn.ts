@@ -5,6 +5,7 @@ import warnSchema from "../../Module/warn-schema";
 import setlogchannel from "../../Module/loging/setlogchannel";
 
 import { TextChannel } from "discord.js";
+import modAction from "../../Module/mod-action";
 
 export default{
     name: `warn`,
@@ -58,7 +59,7 @@ export default{
 
         //console.log('user tagged')
 
-        let target = args.slice(2).join(' ')
+        let target = args.slice(2).join(' ')  // reason for 'add' and warn_id for 'remove' subcommand.
 
         //console.log(`${test}`)
 
@@ -76,36 +77,9 @@ export default{
 
             message.reply (`<@${user}> is warned for ${warnings.reason}`)
 
-            const result = await setlogchannel.findById(guild.id)
+            const action = `${user.displayName} has been warned}`
 
-            if(!result) return
-
-            const {channelID} = result
-
-            const channel = guild.channels.cache.get(channelID) as TextChannel
-
-            const taken = {
-                color: 0xff0000,
-                title: `User Warned`,
-                fields: [
-                    {
-                        name: `Name`,
-                        value: `${user}`,
-                        inline: true,
-                    },
-                    {
-                        name: `Mod`,
-                        value: `${message.member}`,
-                        inline: true,
-                    },
-                    {
-                        name: `Reason`,
-                        value: `${target}`,
-                        inline: false,
-                    }
-                ]
-            }
-            channel.send({embeds: [taken]})
+            modAction(action, user, staff, target, guild)
 
             return
 
@@ -160,6 +134,9 @@ export default{
                 };
      
                 message.channel.send({ embeds: [warnremove] });
+                const action = `${warnings._id} has been removed from ${user}}`
+
+                modAction(action, user, staff, target, guild)
      
                 return
            }

@@ -1,9 +1,6 @@
 import { ICommand } from "wokcommands";
 
-import setlogchannel from "../../Module/loging/setlogchannel";
-
-import { Interaction, TextChannel } from "discord.js";
-import modaction from "../../Module/modaction_confirm";
+import modAction from "../../Module/mod-action";
 
 export default {
     names: `ban`,
@@ -17,7 +14,7 @@ export default {
     expectedArgs: `<user> [reason]`,
     expectedArgsTypes: [`USER`, `STRING`],
 
-    callback: async({message, args, member,guild, channel}) => {
+    callback: async({message, args, member: staff,guild, channel}) => {
 
         if(!guild) return 'This command is only available in Server.'
 
@@ -46,7 +43,7 @@ export default {
             return
         }
 
-        if(user == member){
+        if(user == staff){
             const error = {
                 color: 0xff0000,
                 title: `:x: Oh really :bangbang: `,
@@ -75,69 +72,13 @@ export default {
 
         if(reason.length > 1024){reason = args.slice(1, 1021)+'...'}
 
-        const maction = modaction
+        await user.ban({reason: `${reason}`})
 
-        const msg = await message.reply({
-            content: 'Are you sure?',
-            components: [maction]
-        })
+        message.channel.send(`${user} is banned from the server`)
 
-        const filter = (butInt: Interaction) => {
-            return message.author.id === butInt.user.id
-        }
+        const action = `${user.displayName} banned`
 
-        const collector = channel.createMessageComponentCollector({
-            filter,
-            max: 1,
-            time: 1000 * 15
-        })
-
-        collector.on('end', async (collection) => {
-            if(collection.first()?.customId === 'no') {
-                msg.edit({
-                     content: `❌| Mod action canceled.\n${user} has not been kicked from the server`,
-                     components: []
-                })
-            }
-            if(collection.first()?.customId === 'yes'){
-
-                await user.ban({reason: `${reason}`})
-
-                message.channel.send(`${user} is banned from the server`)
-
-                
-
-                const result = await setlogchannel.findById(guild.id)
-
-                if(!result) return
-
-                    const {channelID} = result
-
-                    const logchannel = guild.channels.cache.get(channelID) as TextChannel
-
-                const taken = {
-                    color: 0xff0000,
-                    title: `User banned`,
-                    fields: [
-                        {
-                            name: `Name`,
-                            value: `${user}`,
-                            inline: true,
-                        },
-                        {
-                            name: `Responsible Mod`,
-                            value: `${message.member}`,
-                            inline: true,
-                        },
-                        {
-                            name: `Reason`,
-                            value: `${reason}`,
-                            inline: false,
-                        }
-                    ]
-                }
-                logchannel.send({embeds: [taken]})
-            }
-        })
+        modAction(action, user, staff, reason, guild)
+    
     }
 } as ICommand
