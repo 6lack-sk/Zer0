@@ -1,6 +1,5 @@
-import { User } from "discord.js"
+import { GuildMember, User } from "discord.js"
 import ms from "ms"
-import fetch from "node-fetch"
 import { ICommand } from "wokcommands"
 import modAction from "../../Module/mod-action"
 //
@@ -11,15 +10,25 @@ export default{
     category: `Mod`,
     description: `timeout a user`,
 
-    requireRoles: true,
+    //permissions:['ADMINISTRATOR'],
 
     expectedArgs: '<user> <time> [reason]',
 
     callback: async ({message, guild, member: staff, client, args}) => {
 
         if(!guild) return 'Command is only available for guild'
-        const user = message.mentions.users.first() as User
+        const botperm = guild.me?.permissions.has('MODERATE_MEMBERS')
+        if(botperm == false) return `I don't have MODERATE_MEMBERS(TIMEOUT_MEMBERS) permission.`
+
+        const staffperm = staff.permissions.has('MODERATE_MEMBERS')
+        if(staffperm == false) return `You don't have MODERATE_MEMBERS(TIMEOUT_MEMBERS) permission.`
+        
+        const user = message.mentions.members?.first() as GuildMember
         if(!user) {return 'please tag a user'}
+
+        const botrole = guild.me?.roles.highest.comparePositionTo(user.roles.highest)
+        if(!botrole) return 'please assign me a role'
+        if(botrole <= 0 ) return `'Tagged user has a higher or same role as mine. Can't time him out.`
 
         let reason = args.slice(2).join('')
         if(!reason) {reason = 'Not specified'}
@@ -31,18 +40,14 @@ export default{
             return 'make sure that timeout duration is between 10sec and 28days'
         }
 
-        const timeout = new Date(Date.now() + milisec).toISOString()
+        try {user.timeout(milisec,reason)
 
-        await fetch(`https://discord.com/api/guilds/${guild?.id}/members/${user.id}`,{
-            method: 'PATCH',
-			body: JSON.stringify({ communication_disabled_until: timeout }),
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': `Bot ${client.token}`,
-			},
-        })
-        const action = `${user.tag} timed out for ${time}`
-
-        modAction(action, user, staff, reason, guild)
+            const action = `${user.displayName} timed out for ${time}`
+      
+            modAction(action, user, staff, reason, guild)
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 }as ICommand

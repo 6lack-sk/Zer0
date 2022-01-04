@@ -1,9 +1,7 @@
-import { User } from "discord.js"
-import ms from "ms"
-import fetch from "node-fetch"
+import { GuildMember, User } from "discord.js"
 import { ICommand } from "wokcommands"
 import modAction from "../../Module/mod-action"
-//
+
 
 export default{
     names: `reset-timeout`,
@@ -11,30 +9,34 @@ export default{
     category: `Mod`,
     description: `reset user timeout`,
 
-    requireRoles: true,
+    //permissions: ['MODERATE_MEMBERS'],
 
     expectedArgs: '<user> [reason]',
 
     callback: async ({message, guild, member: staff, client, args}) => {
 
         if(!guild) return 'Command is only available for guild'
-        const user = message.mentions.users.first() as User
+        const botperm = guild.me?.permissions.has('MODERATE_MEMBERS')
+        if(botperm == false) return `I don't have MODERATE_MEMBERS(TIMEOUT_MEMBERS) permission.`
+
+        const staffperm = staff.permissions.has('MODERATE_MEMBERS')
+        if(staffperm == false) return `You don't have MODERATE_MEMBERS(TIMEOUT_MEMBERS) permission.`
+
+        const user = message.mentions.members?.first() as GuildMember
         if(!user) {return 'please tag a user'}
+
+        const botrole = guild.me?.roles.highest.comparePositionTo(user.roles.highest)
+        console.log(botrole)
+        if(!botrole || botrole <= 0 ) return `'Tagged user has a higher or same role as mine. Can't time him out.`
 
         let reason = args.slice(1).join('')
         if(!reason) {reason = 'Not specified'}
 
-        const timeout = 0
+        const time = 0
 
-        await fetch(`https://discord.com/api/guilds/${guild?.id}/members/${user.id}`,{
-            method: 'PATCH',
-			body: JSON.stringify({ communication_disabled_until: timeout }),
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': `Bot ${client.token}`,
-			},
-        })
-        const action = `${user.tag} timeout has been reset`
+        user.timeout(time, reason)
+
+        const action = `${user.displayName} timeout has been revoked`
 
         modAction(action, user, staff, reason, guild)
     }
