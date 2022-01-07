@@ -15,25 +15,26 @@ export default {
 
         if(!guild) return 'Run this command in a server'
 
-        const user = message.mentions.users.first() || message.author
+        const user = message.mentions.members?.first() || member
+        const user2 = message.mentions.users.first() || message.author
 
-        if(!member.joinedTimestamp) return 'Is it a guild. I have doubt. Please try in a guild channel.'
+        if(!user.joinedTimestamp) return 'Is it a guild? I have doubt. Please try in a guild channel.'
 
         const userinfo = {
-            color: 0xff0000,
-            title: `Information about ${user.username}`,
+            color: user.displayHexColor,
+            title: `Information about ${user2.username}`,
             thumbnail: {
                 url: `${user.displayAvatarURL()}`,
             },
             fields: [
                 {
                     name: `» Server Nickname`,
-                    value: `> ${user.toString()}`,
+                    value: `> ${user.displayName}`,
                     inline: false
                 },
                 {
                     name: `» User Tag`,
-                    value: `> ${user.tag}`,
+                    value: `> ${user2.tag}`,
                     inline: false,
                 },
                 {
@@ -43,14 +44,19 @@ export default {
                 },
                 {
                     name: `» Joined on Discord`,
-                    value: `> ${new Date(user.createdTimestamp).toLocaleDateString()}`,
-                    inline: false,
+                    value: `> ${new Date(user2.createdTimestamp).toLocaleDateString()}`,
+                    inline: true,
                 },
-                //{
-                //    name: `:knot: **Joined on Server**`,
-                  //  value: `**> ${new Date().toLocaleDateString()}**`,
-                    //inline: true,
-                //},
+                {
+                    name: `» Joined on Server`,
+                    value: `> ${new Date(user.joinedTimestamp).toLocaleDateString()}`,
+                    inline: true,
+                },
+                {
+                    name: `» Highest Role`,
+                    value: `> ${user.roles.highest}`,
+                    inline: false
+                }
             ],
             timestamp: new Date(),
             footer: {
