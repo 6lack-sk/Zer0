@@ -12,7 +12,7 @@
     "bot_logo": "https://i.imgur.com/EeQVQkb.png",
     "bot_invite": "https://discord.com/api/oauth2/authorize?client_id=908260370177753128&permissions=0&scope=bot",
     "noicon_img": "https://i.imgur.com/28SFuEz.png",
-    "testserver": ["903404306840039554"],
+    "testserver": ["851706009097470022"],
     "bug_channel_id": "927855996548825108",
     "suggest_channel_id": "927859994651664445"
 }
