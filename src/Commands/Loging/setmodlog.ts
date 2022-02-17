@@ -16,7 +16,7 @@ export default {
 
     slash: "both",
 
-    testOnly: true,
+    //testOnly: true,
 
     minArgs: 1,
     expectedArgs: '<channel>',
