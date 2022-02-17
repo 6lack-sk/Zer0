@@ -45,7 +45,7 @@ export default (client: Client) =>{
         const autoroledm = {
             color: 0x00ff00,
             title: `Jion Role`,
-            description: `You have been given the role ${role.name} to the server ${guild.name}`,
+            description: `You have been given the role **${role.name}** to the server **${guild.name}**`,
             timestamp: `${new Date()}`,
             footer: {
               text: `${guild.name}`
