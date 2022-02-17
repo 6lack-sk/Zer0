@@ -27,7 +27,9 @@ export default (client: Client) =>{
 
         data[0].send({
             content: data[1]
-            .replace(/@/g, `<@${id}>`)
+            .replace(/{user}/g, `<@${id}>`)
+            .replace(/{server}/g, `${guild.name}`)
+            .replace(/{username}/g, `${member.user.username}`)
         })
     })
 }
