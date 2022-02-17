@@ -20,6 +20,7 @@ export default {
 
     minArgs: 1,
     expectedArgs: '<channel>',
+    expectedArgsTypes: ['CHANNEL'],
 
     callback: async({message, guild, args, interaction}) => {
 

@@ -1,8 +1,6 @@
 import { dirname } from "path";
 import { ICommand } from "wokcommands";
 
-import imp from '../../Data/config.json';
-
 export default {
 
     name: `shutdown`,
@@ -19,7 +17,7 @@ export default {
 
         if(message.deletable) {message.delete()}
 
-        if (imp.rebot_pass !== args[0]){
+        if (process.env.rebot_pass !== args[0]){
             return `Access Denied`
         }
         try {
