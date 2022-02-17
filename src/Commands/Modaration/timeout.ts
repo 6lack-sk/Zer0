@@ -1,8 +1,6 @@
 import { GuildMember, User } from "discord.js"
 import ms from "ms"
-import fetch from "node-fetch"
 import { dirname } from "path"
-import qs from "qs"
 import { ICommand } from "wokcommands"
 import modAction from "../../Module/loging/mod-action"
 //
