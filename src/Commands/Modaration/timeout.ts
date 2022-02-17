@@ -1,4 +1,3 @@
-import axios from "axios"
 import { GuildMember, User } from "discord.js"
 import ms from "ms"
 import fetch from "node-fetch"
