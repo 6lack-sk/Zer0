@@ -5,7 +5,7 @@ export default {
     
     name: `avatar`,
     aliases: [`av`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shows avatar of user
     \`\`\`Example:avatar [@user]\n(no mention shows the the message author avatar)\`\`\``,
 

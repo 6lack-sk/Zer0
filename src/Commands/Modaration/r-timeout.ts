@@ -7,7 +7,7 @@ import modAction from "../../Module/loging/mod-action"
 export default{
     names: `reset-timeout`,
     aliases: [`reset-to`, `rto`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Reset user timeout
     \`\`\`Example:reset-timeout  <user> [reason] \nreset-timeout @user timeout waived\`\`\``,
 

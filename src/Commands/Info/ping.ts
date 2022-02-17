@@ -5,7 +5,7 @@ export default {
     
     name: `ping`,
     aliases: [``],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shaows bot ping
     \`\`\`Example:ping\`\`\``,
 

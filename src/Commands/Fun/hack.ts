@@ -6,7 +6,7 @@ import { ICommand } from "wokcommands";
 export default{
     names: `hack`,
     aliases: [''],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Do a fake hack for a user
     \`\`\`Example:hack [@user]\`\`\``,
 

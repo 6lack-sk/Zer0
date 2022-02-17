@@ -6,7 +6,7 @@ import binfo from "../../Data/info.json"
 export default{
     names: 'help',
     aliases: [''],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shows all available commands
     \`\`\`Example:help  [command]\n help botinfo\`\`\``,
 
@@ -51,7 +51,7 @@ export default{
         if(!args[0]){
         let description = '**Here is the command list:**\n\n'
         for(let k = 0; k < cmdcategory.length; k++){
-            description += `**⁜ | ${cmdcategory[k]}**\n»`
+            description += `**⁜ ${cmdcategory[k]}**\n»`
             instance.commandHandler.commands.forEach((command: any) => {
                 if(command.category == cmdcategory[k]){
                     if(command.hidden !== true){

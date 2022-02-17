@@ -6,7 +6,7 @@ import binfo from "../../Data/info.json"
 export default{
     names: `bug`,
     aliases: [''],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Report if you find any bug
     \`\`\`Example:bug <bug details> \`\`\``,
 

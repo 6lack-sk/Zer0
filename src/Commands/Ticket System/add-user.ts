@@ -7,7 +7,7 @@ import tickets from "../../Module/tickets";
 export default{
     names: `add-user`,
     aliases: ['adduser', 'au', 'tadd'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Add a user to an existing ticket
     \`\`\`Example:ticket-add  <user> [reason] \n ticket-add @user ticket added\`\`\``,
 

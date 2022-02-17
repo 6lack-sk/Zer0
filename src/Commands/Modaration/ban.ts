@@ -6,7 +6,7 @@ import modAction from "../../Module/loging/mod-action";
 export default {
     names: `ban`,
     aliases: ``,
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Ban a member from the server
     \`\`\`Example:ban <@member> [reason]\nban <922798353195089940> [reason]\`\`\``,
 

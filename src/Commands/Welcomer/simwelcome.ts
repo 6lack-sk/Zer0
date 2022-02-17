@@ -1,11 +1,12 @@
 import { dirname } from 'path'
 import { ICommand } from 'wokcommands'
+import fs from 'fs'
 
 export default {
 
     name: `simwelcome`,
     aliases: [`simwel`, `simw`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Simulate the welcome message
     \'\'\'Exaple:simwelcome\'\'\'`,
 

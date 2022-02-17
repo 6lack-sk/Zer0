@@ -6,7 +6,7 @@ import tickets from "../../Module/tickets";
 export default{
     names: `ticket-close`,
     aliases: ['tclose'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Close a ticket`,
 
     callback:async ({message, member, guild, client, channel}) => {

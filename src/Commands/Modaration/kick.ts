@@ -10,7 +10,7 @@ export default {
 
     name: `kick`,
     aliases: [],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Kicks the user from server
     \`\`\`Example:kick <@user> [reason]\nkick <userID> [reason]\`\`\``,
 

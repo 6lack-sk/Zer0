@@ -8,7 +8,7 @@ export default {
 
     name: `setlog`,
     aliases: [`sl`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Set the log channel for the server
     \'\'\'Exaple:setlog <#channel_id> \n setlog <922798353195089940>\'\'\'`,
 
@@ -16,7 +16,7 @@ export default {
 
     slash: "both",
 
-    //testOnly: true,
+    testOnly: true,
 
     minArgs: 1,
     expectedArgs: '<channel>',

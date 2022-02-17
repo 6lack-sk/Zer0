@@ -4,7 +4,7 @@ import { ICommand } from "wokcommands";
 export default{
     names: `test`,
     aliases: [`t`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `test command`,
 
     hidden: true,

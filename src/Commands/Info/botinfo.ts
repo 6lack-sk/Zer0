@@ -7,7 +7,7 @@ import { dirname } from "path";
 export default {
     name: `botinfo`,
     aliases: [`binfo`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shows bot information
     \`\`\`Example:botinfo\`\`\``,
 

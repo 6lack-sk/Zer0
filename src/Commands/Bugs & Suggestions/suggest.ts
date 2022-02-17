@@ -6,7 +6,7 @@ import binfo from "../../Data/info.json"
 export default{
     names: `suggest`,
     aliases: ['suggestions'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Suggest for a new feature or any changes to the bot
     \`\`\`Example:suggest <suggestion details> \`\`\``,
 

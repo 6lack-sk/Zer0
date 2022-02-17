@@ -7,7 +7,7 @@ export default {
     
     name: `servericon`,
     aliases: [`sicon`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shows server icon
     \`\`\`Example:servericon\`\`\``,	
 

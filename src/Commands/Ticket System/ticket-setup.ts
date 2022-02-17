@@ -6,7 +6,7 @@ import ticketsetup from "../../Module/ticket-setup";
 export default{
     names: 'ticket-setup',
     aliases: ['tsetup'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Setup the channel, category and ticket staff role for the server
     \`\`\`Example:ticket-setup <#channel> <@ticket staff role> [channel topic]
     ticket-setup <channelID> <@ticket staff role> [channel topic]

@@ -1,12 +1,13 @@
 import { dirname } from "path";
 import { ICommand } from "wokcommands";
 
+import imp from '../../Data/config.json';
 
 export default {
 
     name: `shutdown`,
     aliases: [`shut`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shut the bot down`,
 
     minArgs: 1,
@@ -18,7 +19,7 @@ export default {
 
         if(message.deletable) {message.delete()}
 
-        if (process.env.rebot_pass !== args[0]){
+        if (imp.rebot_pass !== args[0]){
             return `Access Denied`
         }
         try {

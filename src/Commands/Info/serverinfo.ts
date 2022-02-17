@@ -7,7 +7,7 @@ export default {
     
     name: `serverinfo`,
     aliases: ['server','sinfo'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shaows server details
     \`\`\`Example:serverinfo\`\`\``,
 

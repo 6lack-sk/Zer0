@@ -8,7 +8,7 @@ import tickets from "../../Module/tickets";
 export default{
     names: `ticket-create`,
     aliases: ['tcreate'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Create a ticket
     \`\`\`Example:ticket-create  <reason> \n ticket-create need help\`\`\``,
 

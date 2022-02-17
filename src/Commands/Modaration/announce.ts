@@ -5,7 +5,7 @@ import { ICommand } from "wokcommands";
 export default{
     names: `announce`,
     aliases: ['announcement'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Announce anything to announcement channel.
     \`\`\`Example:\nannounce <#channel> [@role] <text>\nannounce <927944140136796203> [@role] <text>\`\`\``,
 

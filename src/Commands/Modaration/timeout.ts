@@ -10,7 +10,7 @@ import modAction from "../../Module/loging/mod-action"
 export default{
     names: `timeout`,
     aliases: [`to`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Timeout a user
     \`\`\`Example:timeout  <user> <time> [reason] \ntime-out @user 1d timeout for spam\`\`\``,
 

@@ -5,7 +5,7 @@ import setlogchannel from "../../Module/loging/setlogchannel";
 export default{
     names: 'remove-modlog',
     aliases: ['removemodlog', 'rml'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Remove the modlog for the server
     \`\`\`Example:remove-modlog\`\`\``,
 

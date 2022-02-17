@@ -6,7 +6,7 @@ import modAction from "../../Module/loging/mod-action";
 export default {
     names: `unban`,
     aliases: ``,
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Unban a banned member
     \'\'\'Exaple:unban <922798353195089940> [reason] \n(you ca get user id by clicking on the user/ user tag. And you needs to have developers mode on from settings)\'\'\'`,
 

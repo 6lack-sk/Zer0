@@ -6,7 +6,7 @@ import modAction2 from "../../Module/loging/mod-action 2";
 export default{
     names: `purge`,
     aliases: [`clean`, `cc`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Deletes specified amount of messages
     \`\`\`Example:purge <amount> [filter] \npurge 10 @user \npurge 10 word \npurge 10\`\`\``,
 

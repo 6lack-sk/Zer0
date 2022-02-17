@@ -1,0 +1,61 @@
+import { Intents } from "discord.js";
+import DiscordJS  from 'discord.js'
+import path, { dirname } from 'path'
+
+//import keepAliveser from './server'  // uncomment for activating server
+
+import mongoose from 'mongoose'
+import WOKCommands, { ICommand } from "wokcommands";
+
+import imp from "../../Data/config.json" 
+
+import binfo from "../../Data/info.json"
+
+export default {
+
+    name: `restart`,
+    aliases: [`reboot`],
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Restarts the bot`,
+
+    minArgs: 1,
+    expectedArgs: `<password>`,
+    hidden: true,
+
+    callback: async({message, args}) => {
+
+        if(imp.rebot_pass !== args[0]) return `error`
+        const client = new DiscordJS.Client({
+            // These intents are recommended for the built in help menu
+            intents: [
+              Intents.FLAGS.GUILDS,
+              Intents.FLAGS.GUILD_MESSAGES,
+              Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+              Intents.FLAGS.GUILD_MEMBERS,
+              Intents.FLAGS.GUILDS,
+              Intents.FLAGS.GUILD_BANS
+            ],
+          })
+
+        await message.reply(`Bot will reboot in a while...`)
+        .then(() => client.destroy())
+        .then(() => client.on('ready', ( ) => {
+            const wok = new WOKCommands(client, {
+            // The name of the local folder for your command files
+            commandsDir: path.join(__dirname, '../../Commands'),
+            featuresDir: path.join(__dirname, '../../Features'),
+            typeScript: true,
+            testServers: binfo.testserver,
+            botOwners: binfo.owner,
+            mongoUri: imp.database,
+            dbOptions: {
+              keepAlive: true
+            }
+          })
+          .setDefaultPrefix('.')}))
+        .then(() => client.login(imp.token))
+        console.log("Bot Restarted");
+        return message.channel.send(`Reboot complete. Ready for command`)
+    }
+
+} as ICommand

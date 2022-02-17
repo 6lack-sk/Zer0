@@ -9,7 +9,7 @@ export default {
     
     name: `userinfo`,
     aliases: ['user','uinfo'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Shaows user details
     \`\`\`Example:userinfo [@user]\`\`\``,
 

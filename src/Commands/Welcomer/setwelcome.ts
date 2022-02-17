@@ -8,7 +8,7 @@ export default {
 
     name: `setwelcome`,
     aliases: [`setwel`, `sw`],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Set the welcome message for the server
     \`\`\`Example:setwelcome <#channel_id> <text> \nsetwelcome <922798353195089940> <text>\nNB: terms can be used in the text: {user}, {server}, {username}
     {user} = user mention

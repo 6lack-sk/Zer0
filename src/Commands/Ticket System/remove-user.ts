@@ -7,7 +7,7 @@ import tickets from "../../Module/tickets";
 export default{
     names: `remove-user`,
     aliases: ['removeuser', 'ru', 'tremove'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Remove a existing user from a ticket
     \`\`\`Example:ticket-remove  <user> [reason] \n ticket-remove @user ticket added\`\`\``,
 

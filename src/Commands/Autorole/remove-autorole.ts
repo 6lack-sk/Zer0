@@ -5,7 +5,7 @@ import autorole_schema from "../../Module/autorole_schema";
 export default{
     names: 'remove-autorole',
     aliases: ['removear', 'rar', 'removeautorole'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Remove the autorole for the server
     \`\`\`Example:remove-autorole\`\`\``,
 

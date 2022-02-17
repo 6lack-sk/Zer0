@@ -7,7 +7,7 @@ import modAction2 from "../../Module/loging/mod-action 2";
 export default{
     names: 'dm',
     aliases: [''],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Sends dm to a specific user
     \`\`\`Example:dm <@user> <message>\n dm @user hi there\`\`\``,
 

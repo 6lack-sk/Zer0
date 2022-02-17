@@ -6,7 +6,7 @@ import ran_ans from '../../Data/ran_ans.json'
 export default{
     names: `8ball`,
     aliases: ['8'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Gives a random answer to your question
     \`\`\`Example:8ball [question]\`\`\``,
 

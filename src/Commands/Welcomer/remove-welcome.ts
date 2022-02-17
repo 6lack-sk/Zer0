@@ -5,7 +5,7 @@ import WelcomeSchema from "../../Module/Welcome-Schema";
 export default{
     names: 'remove-welcome',
     aliases: ['removew', 'rw'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Remove the welcome message for the server
     \`\`\`Example:remove-welcome\`\`\``,
 

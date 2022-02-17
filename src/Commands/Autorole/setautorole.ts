@@ -6,7 +6,7 @@ import autorole_schema from "../../Module/autorole_schema";
 export default{
     names: 'setautorole',
     aliases: ['sar', 'setar'],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Set the autorole for the server
     \`\`\`Example:setautorole <@role>\nsetar <roleID>\`\`\``,
 
@@ -14,7 +14,7 @@ export default{
 
     slash: "both",
 
-    //testOnly: true,
+    testOnly: true,
 
     minArgs: 1,
     expectedArgs: '<role>',

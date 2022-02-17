@@ -7,7 +7,7 @@ export default {
     
     name: `invite`,
     aliases: [``],
-    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    category: `${__dirname.split(dirname(__dirname))[1]}`,
     description: `Generate a default invite link for the bot
     \`\`\`Example:invite\`\`\``,
 
