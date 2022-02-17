@@ -2,29 +2,18 @@
 import binfo from "../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
+import { dirname } from "path";
 
 export default {
-    
     name: `botinfo`,
     aliases: [`binfo`],
-    category: `Info`,
-    description: `Shaows bot info`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shows bot information
+    \`\`\`Example:botinfo\`\`\``,
+
+    //hidden: true,
 
     callback: async({message, client}) => {
-
-        let uptime = client.uptime
-
-        if(uptime == null) {uptime = 0}
-        
-        const ms = uptime % 1000
-        uptime = (uptime - ms)/1000
-        const sec = uptime % 60
-        uptime = (uptime - sec)/60
-        const min = uptime % 60
-        uptime = (uptime - min)/60
-        const hour = uptime % 24
-        uptime = (uptime - hour)/24
-        const days = uptime
         
         
         const botinfo = {
@@ -62,11 +51,6 @@ export default {
                     name: `» Ping`,
                     value: `> ${client.ws.ping} ms.`,
                     inline: true,
-                },
-                {
-                    name: '» Uptime',
-                    value: `> ${days}d ${hour}h ${min}min ${sec}sec`,
-                    inline: true
                 },
             ],
             footer: {

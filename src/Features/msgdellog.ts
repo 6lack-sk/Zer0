@@ -1,15 +1,19 @@
-import {Client, TextChannel} from "discord.js";
+import {Client, Guild, TextChannel} from "discord.js";
 
-import setlogchannel from "../../Module/loging/setlogchannel";
+import setlogchannel from "../Module/loging/setlogchannel";
 
 const logchannel = {} as {
     [key: string] : [TextChannel]
 }
 
 export default (client: Client) =>{
-    client.on('guildBanAdd', async member =>{
+    client.on('messageDelete', async message =>{
 
-        const {guild, user, reason} = member
+        const {guild, author} = message
+
+        if(message.author?.bot == true) return
+
+        if(!guild) return
 
         let data = logchannel[guild.id]
         
@@ -25,18 +29,11 @@ export default (client: Client) =>{
             data = logchannel[guild.id] = [channel]
         }
 
-        let cause = reason
-
-        console.log(cause)
-        if(!cause){
-            cause = "Not specified"
-        }
-
         const action = {
-            title: `${user.tag} is banned`,
+            title: `${author?.tag}`,
             color: 0xff0000,
-            description: `${user} is banned from the server.\n
-                        Reason: ${cause}`,
+            description: `Message sent by ${author} is deleted ${message.channel}\n
+                        ${message}`,
             timestamp: new Date(),
             footer: {
                 text: `${guild.name}`,
@@ -49,6 +46,6 @@ export default (client: Client) =>{
 
     export const config = {
 
-        displayName: 'Ban Log',
-        dbName: 'BAN_LOG'
+        displayName: 'Message Delete Log',
+        dbName: 'MSG_DEL_LOG'
     }

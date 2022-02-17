@@ -1,11 +1,15 @@
+import { dirname } from 'path';
 import { ICommand } from 'wokcommands'
 
 export default {
     
     name: `avatar`,
     aliases: [`av`],
-    category: `Info`,
-    description: `Shows avatar of user`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shows avatar of user
+    \`\`\`Example:avatar [@user]\n(no mention shows the the message author avatar)\`\`\``,
+
+    //hidden: true,
 
     callback: async({message, member}) => {
 

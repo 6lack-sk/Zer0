@@ -1,17 +1,19 @@
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 
-import modAction from "../../Module/mod-action";
+import modAction from "../../Module/loging/mod-action";
 
 export default {
     names: `unban`,
     aliases: ``,
-    category: `Admin`,
-    description: `Unban a banned member`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Unban a banned member
+    \'\'\'Exaple:unban <922798353195089940> [reason] \n(you ca get user id by clicking on the user/ user tag. And you needs to have developers mode on from settings)\'\'\'`,
 
     permissions: [`ADMINISTRATOR`],
 
     minArgs: 1,
-    expectedArgs: `<user_id> [reason]\n(don't know how to get the id, run the command getid)`,
+    expectedArgs: `<user_id> [reason]`,
     expectedArgsTypes: [`NUMBER`, 'STRING'],
 
     callback: async({message, args, member: staff, guild, client}) => {

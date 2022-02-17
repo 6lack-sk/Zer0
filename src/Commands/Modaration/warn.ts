@@ -5,12 +5,13 @@ import warnSchema from "../../Module/warn-schema";
 import setlogchannel from "../../Module/loging/setlogchannel";
 
 import { TextChannel } from "discord.js";
-import modAction from "../../Module/mod-action";
+import modAction from "../../Module/loging/mod-action";
+import { dirname } from "path";
 
 export default{
     name: `warn`,
     aliases: [`w`],
-    category: `Mod`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
     description: `add warn or see warn list or remove a warn with sub commands`,
 
     permissions:[`MANAGE_ROLES`],

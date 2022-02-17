@@ -1,5 +1,5 @@
 import { Guild, GuildMember, TextChannel, User } from "discord.js";
-import setlogchannel from "./loging/setlogchannel";
+import setlogchannel from "./setlogchannel";
 
 export default async function modAction2(action:string, staff:GuildMember | undefined, reason:String, guild:Guild ) {
 
@@ -29,7 +29,13 @@ export default async function modAction2(action:string, staff:GuildMember | unde
             }
         ]
     }
-    logchannel.send({embeds: [taken]})
+    logchannel.send({
+        embeds: [taken],
+        allowedMentions: {
+            users: [],
+            roles: [],
+        }
+    })
 }
 
 export const config = {

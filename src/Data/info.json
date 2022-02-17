@@ -3,16 +3,18 @@
     "bot_description": "A bot with multipurpose feature like fun, moderation and minigames. Go to option for any growing or a massive grown server",
     "bot_ver": "1.13.0",
     "node_ver": "16.13.0",
-    "discord_ver": "13.3.1",
+    "discord_ver": "13.5.0",
     "owner": ["582955196716679173"],
     "devs": ["582955196716679173", "720257265533321308"],
     "dev_names": ["<@582955196716679173>", "<@720257265533321308>"],
-    "credit": "created by an exparienced team of Black Universe",
+    "credit": "created by a exparienced team of Black Universe",
     "bu_logo": "https://i.imgur.com/CuBJG8N.png",
     "bot_logo": "https://i.imgur.com/EeQVQkb.png",
-    "bot_invite": "https://discord.com/api/oauth2/authorize?client_id=908260370177753128&permissions=0&scope=bot",
     "noicon_img": "https://i.imgur.com/28SFuEz.png",
     "testserver": ["851706009097470022"],
     "bug_channel_id": "927855996548825108",
-    "suggest_channel_id": "927859994651664445"
+    "suggest_channel_id": "927859994651664445",
+    "bot_guilds_log": "942694013096591412",
+    "owner_id": "582955196716679173",
+    "client_ID": "908260370177753128"
 }

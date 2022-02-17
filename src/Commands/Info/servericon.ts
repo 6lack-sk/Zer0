@@ -1,13 +1,15 @@
 import binfo from "../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
+import { dirname } from "path";
 
 export default {
     
     name: `servericon`,
     aliases: [`sicon`],
-    category: `Info`,
-    description: `Shows server icon`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shows server icon
+    \`\`\`Example:servericon\`\`\``,	
 
     callback: async({message, guild}) => {
 

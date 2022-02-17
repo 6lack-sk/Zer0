@@ -1,13 +1,15 @@
 import binfo from"../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
+import { dirname } from "path";
 
 export default {
     
     name: `serverinfo`,
     aliases: ['server','sinfo'],
-    category: `Info`,
-    description: `Shaows server details`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shaows server details
+    \`\`\`Example:serverinfo\`\`\``,
 
     callback: async({message, guild}) => {
 

@@ -1,12 +1,14 @@
 import { TextChannel } from "discord.js";
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 import binfo from "../../Data/info.json"
 
 export default{
     names: `suggest`,
     aliases: ['suggestions'],
-    category: `Bugs & Suggestions`,
-    description: `Suggest for a new feature of any changes to the bot.`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Suggest for a new feature or any changes to the bot
+    \`\`\`Example:suggest <suggestion details> \`\`\``,
 
     minArgs: 1,
     expectedArgs: '<suggestions>',
@@ -45,6 +47,10 @@ export default{
             console.log('bug_channel_id is broken. No report will be recieved')
             return
         }
-        channel.send({embeds: [report]})   
+        const msg = await channel.send({embeds: [report]})   
+
+        const msgID = msg.id
+
+        console.log(msgID)
     }
 }as ICommand

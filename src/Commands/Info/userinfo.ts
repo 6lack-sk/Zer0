@@ -3,13 +3,18 @@ import binfo from "../../Data/info.json";
 
 import { ICommand } from 'wokcommands'
 import { GuildMember } from "discord.js";
+import { dirname } from "path";
 
 export default {
     
     name: `userinfo`,
     aliases: ['user','uinfo'],
-    category: `Info`,
-    description: `Shaows user details`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shaows user details
+    \`\`\`Example:userinfo [@user]\`\`\``,
+
+    expectedArgs: '[user]',
+    expectedArgsTypes: ['USER'],
 
     callback: async({message, member, guild}) => {
 

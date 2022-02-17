@@ -1,19 +1,17 @@
-import {Client, Guild, TextChannel} from "discord.js";
+import {Client, TextChannel} from "discord.js";
 
-import setlogchannel from "../../Module/loging/setlogchannel";
+import setlogchannel from "../Module/loging/setlogchannel";
 
 const logchannel = {} as {
     [key: string] : [TextChannel]
 }
 
 export default (client: Client) =>{
-    client.on('messageDelete', async message =>{
+    client.on( 'guildMemberRemove', async member =>{
 
-        const {guild, author} = message
+        const {guild, user} = member
 
-        if(message.author?.bot == true) return
-
-        if(!guild) return
+        if(user.bot) return
 
         let data = logchannel[guild.id]
         
@@ -30,10 +28,12 @@ export default (client: Client) =>{
         }
 
         const action = {
-            title: `${author?.tag}`,
+            title: `${user.tag}`,
             color: 0xff0000,
-            description: `Message sent by ${author} is deleted <#${message.channel}>\n
-                        ${message}`,
+            description: `${user} has left the server.`,
+            thumbnail: {
+                url: `${user.displayAvatarURL()}`,
+            }, 
             timestamp: new Date(),
             footer: {
                 text: `${guild.name}`,
@@ -46,6 +46,6 @@ export default (client: Client) =>{
 
     export const config = {
 
-        displayName: 'Message Delete Log',
-        dbName: 'MSG_DEL_LOG'
+        displayName: 'Leave LOG',
+        dbName: 'LEAVE_LOG'
     }

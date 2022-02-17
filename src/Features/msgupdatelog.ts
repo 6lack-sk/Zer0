@@ -1,6 +1,6 @@
 import {Client, TextChannel} from "discord.js";
 
-import setlogchannel from "../../Module/loging/setlogchannel";
+import setlogchannel from "../Module/loging/setlogchannel";
 
 const logchannel = {} as {
     [key: string] : [TextChannel]
@@ -36,7 +36,7 @@ export default (client: Client) =>{
         const action = {
             title: `${author?.tag}`,
             color: 0xff0000,
-            description: `${author} edited the message in <#${newMessage.channel}>.\n 
+            description: `${author} edited the message in ${newMessage.channel}.\n 
                         [Jump to the message!](${newMessage.url})`,
             fields: [
                 {

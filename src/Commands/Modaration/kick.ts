@@ -1,16 +1,18 @@
-import {Interaction, MessageComponentInteraction, TextChannel } from "discord.js";
+import {GuildMember, Interaction, MessageComponentInteraction, TextChannel } from "discord.js";
 import { ICommand } from "wokcommands";
 
 import setlogchannel from "../../Module/loging/setlogchannel";
-import modAction from "../../Module/mod-action";
+import modAction from "../../Module/loging/mod-action";
 import modaction from "../../Module/modaction_confirm";
+import { dirname } from "path";
 
 export default {
 
     name: `kick`,
     aliases: [],
-    category: `Mod`,
-    description: `Kicks the user from server`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Kicks the user from server
+    \`\`\`Example:kick <@user> [reason]\nkick <userID> [reason]\`\`\``,
 
     permissions: [`KICK_MEMBERS`],
 
@@ -22,8 +24,6 @@ export default {
 
         if(!guild) return 'This command is only available in Server.'
 
-        const user = message.mentions.members?.first()
-
         if(!message.guild?.me?.permissions.has('KICK_MEMBERS')){
             const error = {
                 color: 0xff0000,
@@ -33,6 +33,13 @@ export default {
             message.channel.send({ embeds: [error] });
 
             return
+        }
+
+        let user = message.mentions.members?.first() as GuildMember
+
+        if(!user) {
+            user = guild.members.cache.get(args[0]) as GuildMember
+            if(!user) return 'Please mention a server member or provide a valid user id'
         }
 
         if(user == undefined){

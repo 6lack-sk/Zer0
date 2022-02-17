@@ -1,13 +1,17 @@
 import { Guild, GuildMember, TextChannel, User } from "discord.js";
-import setlogchannel from "./loging/setlogchannel";
+import setlogchannel from "./setlogchannel";
 
-export default async function modAction(action:string, user:User | GuildMember, staff:GuildMember | undefined, reason:String, guild:Guild ) {
+export default async function modAction(action:string, user:User | GuildMember | undefined, staff:GuildMember | undefined, reason:String, guild:Guild ) {
 
     const result = await setlogchannel.findById(guild.id)
 
     if(!result) return
 
     const {channelID} = result
+
+    const name = user == undefined? 'Not against a User' : `${user}(${user.id})`
+
+    const resstaff = staff == undefined? `executed by discord default`: `${staff}(${staff.roles.highest})`
 
     const logchannel = guild.channels.cache.get(channelID) as TextChannel
 
@@ -17,12 +21,12 @@ export default async function modAction(action:string, user:User | GuildMember, 
         fields: [
             {
                 name: `Name`,
-                value: `${user}(${user.id})`,
+                value: name,
                 inline: true,
             },
             {
                 name: `Responsible Staff`,
-                value: `${staff}`,
+                value: resstaff,
                 inline: true,
             },
             {
@@ -32,7 +36,13 @@ export default async function modAction(action:string, user:User | GuildMember, 
             }
         ]
     }
-    logchannel.send({embeds: [taken]})
+    logchannel.send({
+        embeds: [taken],
+        allowedMentions: {
+            users: [],
+            roles: [],
+        }
+    })
 }
 
 export const config = {

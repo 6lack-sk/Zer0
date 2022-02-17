@@ -1,12 +1,14 @@
 import { TextChannel } from "discord.js";
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 import binfo from "../../Data/info.json"
 
 export default{
     names: `bug`,
     aliases: [''],
-    category: `Bugs & Suggestions`,
-    description: `Report if you find a bug`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Report if you find any bug
+    \`\`\`Example:bug <bug details> \`\`\``,
 
     minArgs: 1,
     expectedArgs: '<bug details>',

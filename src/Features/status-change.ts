@@ -2,11 +2,14 @@ import { Client } from "discord.js";
 
 export default (client: Client) => {
 
+    const users = client.guilds.cache.map(guild => guild.memberCount).reduce((a,b) => a + b, 0)
+
     const statusoptions = [
         `Black Universe`,
         `server stats`,
         `something funny`,
-        `and thinking`
+        `and thinking`,
+        `${users} users`
     ]
 
     let counter = 0
@@ -23,7 +26,7 @@ export default (client: Client) => {
         if(++counter >= statusoptions.length) {
             counter = 0
         }
-        setTimeout(update, 1000 * 60 * 3)
+        setTimeout(update, 1000 * 30)
     }
     update()
 

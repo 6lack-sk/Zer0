@@ -1,4 +1,5 @@
 import { Permissions } from 'discord.js';
+import { dirname } from 'path';
 import { ICommand } from 'wokcommands'
 import binfo from '../../Data/info.json'
 
@@ -6,8 +7,9 @@ export default {
     
     name: `invite`,
     aliases: [``],
-    category: `Info`,
-    description: `Generate a default invite link for the bot`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Generate a default invite link for the bot
+    \`\`\`Example:invite\`\`\``,
 
     callback: async({message, client,member}) => {
 

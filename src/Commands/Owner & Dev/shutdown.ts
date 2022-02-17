@@ -1,27 +1,33 @@
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 
-//import imp from '../../Data/config.json';
 
 export default {
 
     name: `shutdown`,
     aliases: [`shut`],
-    category: `Owner`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
     description: `Shut the bot down`,
 
     minArgs: 1,
-    expectedArgs: `<password>`,
+    expectedArgs: `<bot_owner_pass>`,
     ownerOnly:true,
-    testOnly:true,
+    hidden: true,
 
     callback: async({message, args, client}) => {
 
-        if (process.env.rebot_pass !== args[0]){
-            return `Incorrect Password`
-        }
+        if(message.deletable) {message.delete()}
 
-        message.reply(`Bot will shutdown in a while. \nPlease boot me again from console`)
-        .then(() => process.exit())
+        if (process.env.rebot_pass !== args[0]){
+            return `Access Denied`
+        }
+        try {
+            message.reply(`Bot will shutdown in a while. \nPlease boot me again from console`)
+            .then(() => process.exit()) 
+        } catch (error) {
+            return 'Access Denied'
+        }
+        
     }
 
 } as ICommand

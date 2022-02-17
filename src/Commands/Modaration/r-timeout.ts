@@ -1,12 +1,15 @@
 import { GuildMember, User } from "discord.js"
+import { dirname } from "path"
 import { ICommand } from "wokcommands"
-import modAction from "../../Module/mod-action"
+import modAction from "../../Module/loging/mod-action"
+//
 
 export default{
     names: `reset-timeout`,
     aliases: [`reset-to`, `rto`],
-    category: `Mod`,
-    description: `reset user timeout`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Reset user timeout
+    \`\`\`Example:reset-timeout  <user> [reason] \nreset-timeout @user timeout waived\`\`\``,
 
     //permissions: ['MODERATE_MEMBERS'],
 

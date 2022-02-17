@@ -1,12 +1,14 @@
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 
-import modAction from "../../Module/mod-action";
+import modAction from "../../Module/loging/mod-action";
 
 export default {
     names: `ban`,
     aliases: ``,
-    category: `Admin`,
-    description: `Ban a member from the server`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Ban a member from the server
+    \`\`\`Example:ban <@member> [reason]\nban <922798353195089940> [reason]\`\`\``,
 
     permissions: [`BAN_MEMBERS`],
 
@@ -17,8 +19,6 @@ export default {
     callback: async({message, args, member: staff,guild, channel}) => {
 
         if(!guild) return 'This command is only available in Server.'
-
-        const user = message.mentions.members?.first()
 
         if(!message.guild?.me?.permissions.has('BAN_MEMBERS')){
             const error = {
@@ -31,16 +31,12 @@ export default {
             return
         }
 
-        if(user == undefined){
-            const error = {
-                color: 0xff0000,
-                title: `:x: Error | Please mention a user from the server(${guild.name})`,
-                description: `<user>, [reason]`,
-            };
+        let user = message.mentions.members?.first()
 
-            message.channel.send({ embeds: [error] });
+        if(!user) {
+            user = guild.members.cache.get(args[0])
 
-            return
+            if(!user) return 'Please mention a user or provide id.'
         }
 
         if(user == staff){

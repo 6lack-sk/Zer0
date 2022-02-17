@@ -1,18 +1,48 @@
-import { MessageEmbed } from "discord.js";
+import { Interaction, MessageActionRow, MessageButton, MessageEmbed } from "discord.js";
+import { dirname } from "path";
 import { ICommand } from "wokcommands";
 import binfo from "../../Data/info.json"
 
 export default{
     names: 'help',
     aliases: [''],
-    category: 'Info',
-    description: 'Shows all available commands and features.',
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shows all available commands
+    \`\`\`Example:help  [command]\n help botinfo\`\`\``,
 
-    callback: async ({message, guild,instance, args}) => {
+    slash: "both",
+
+    expectedArgs: '[command]',
+    expectedArgsTypes: ['STRING'],
+
+    //testOnly: true,
+
+    callback: async ({message, guild,instance, args, interaction}) => {
+
+        const helpbutt = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+            .setLabel('Invite')
+            .setStyle('LINK')
+            .setURL(`https://discord.com/api/oauth2/authorize?client_id=${binfo.client_ID}&permissions=8&scope=bot`)
+        )
+        .addComponents(
+            new MessageButton()
+            .setLabel('Support Server')
+            .setStyle('LINK')
+            .setURL(`https://discord.gg/dGJB9qFGs2`)
+        )
+        .addComponents(
+            new MessageButton()
+            .setLabel('Vote')
+            .setStyle('LINK')
+            .setURL(`https://top.gg/bot/${binfo.client_ID}/vote`)
+
+        )
         var cmdcategory: string[] = ['']
         let i = 0
         instance.commandHandler.commands.forEach((command: any) => {
-            if(!cmdcategory.includes(command.category)){
+            if(!cmdcategory.includes(command.category) && command.hidden !== true){
                 cmdcategory[i] = command.category
                 i++
             }
@@ -24,7 +54,9 @@ export default{
             description += `**⁜ | ${cmdcategory[k]}**\n»`
             instance.commandHandler.commands.forEach((command: any) => {
                 if(command.category == cmdcategory[k]){
-                    description += `${command.names[0]}, `
+                    if(command.hidden !== true){
+                        description += `\`${command.names[0]}\` `
+                    }	
                 }
             });
             description += `\n\n`
@@ -43,35 +75,78 @@ export default{
                 icon_url: `${binfo.bot_logo}`
             }, 
         }
-        message.channel.send({ embeds: [help]})
-        return
+        if(message){
+            message.reply({ 
+                embeds: [help],
+                components: [helpbutt]
+            })
+        }else{
+            interaction.reply({
+                embeds: [help],
+                components: [helpbutt]
+            })
+        }
         }
 
         instance.commandHandler.commands.forEach((command: any) => {
-            if(command.names.includes(args[0])){
-                const helpfor = {
-                    title: `${binfo.bot_name}`,
-                    description: `Help for ${args[0]} command`,
-                    color: 0xff0000,
-                    thumbnail: {
-                        url: `${binfo.bot_logo}`
-                    },
-                    fields: [
-                        {
-                            name: `Alieses`,
-                            value: `${command.names}`,
-                            inline: false
+
+            if(interaction){
+                if( command.names.includes(args[0]) ||interaction.options.getString('command') == command.names){
+                    const helpfor = {
+                        title: `${binfo.bot_name}`,
+                        description: `Help for ${args[0]} command
+                        \`\`\`<> = required, [] = optional, \n() = aditional info not part of the command\`\`\``,
+                        color: 0xff0000,
+                        thumbnail: {
+                            url: `${binfo.bot_logo}`
                         },
-                        {
-                            name: `Description`,
-                            value: `${command.description}`,
-                            inline: false
-                        },
-                    ]
+                        fields: [
+                            {
+                                name: `Alieses`,
+                                value: `${command.names}`,
+                                inline: false
+                            },
+                            {
+                                name: `Description`,
+                                value: `${command.description}`,
+                                inline: false
+                            },
+                        ]
+                    }
+                        interaction.reply({ 
+                            embeds: [helpfor]
+                        })
                 }
-                message.channel.send({embeds: [helpfor]})
-                console.log(command)
             }
+                    if(message){
+                        if( command.names.includes(args[0])){
+                            const helpfor = {
+                                title: `${binfo.bot_name}`,
+                                description: `Help for ${args[0]} command
+                                \`\`\`<> = required, [] = optional, \n() = aditional info not part of the command\`\`\``,
+                                color: 0xff0000,
+                                thumbnail: {
+                                    url: `${binfo.bot_logo}`
+                                },
+                                fields: [
+                                    {
+                                        name: `Alieses`,
+                                        value: `${command.names}`,
+                                        inline: false
+                                    },
+                                    {
+                                        name: `Description`,
+                                        value: `${command.description}`,
+                                        inline: false
+                                    },
+                                ]
+                            }
+                            message.reply({ 
+                                embeds: [helpfor]
+                            })
+                        }
+                    }
+                
         })
 
     }

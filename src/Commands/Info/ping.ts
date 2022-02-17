@@ -1,11 +1,13 @@
+import { dirname } from 'path';
 import { ICommand } from 'wokcommands'
 
 export default {
     
     name: `ping`,
     aliases: [``],
-    category: `Info`,
-    description: `Shaows bot ping`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Shaows bot ping
+    \`\`\`Example:ping\`\`\``,
 
     callback: async({message, interaction, client}) => {
         

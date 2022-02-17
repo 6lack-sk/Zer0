@@ -1,16 +1,21 @@
+import axios from "axios"
 import { GuildMember, User } from "discord.js"
 import ms from "ms"
+import fetch from "node-fetch"
+import { dirname } from "path"
+import qs from "qs"
 import { ICommand } from "wokcommands"
-import modAction from "../../Module/mod-action"
+import modAction from "../../Module/loging/mod-action"
 //
 
 export default{
     names: `timeout`,
     aliases: [`to`],
-    category: `Mod`,
-    description: `timeout a user`,
+    category: `${__dirname.split(dirname(__dirname))[1].split(`\\`)[1]}`,
+    description: `Timeout a user
+    \`\`\`Example:timeout  <user> <time> [reason] \ntime-out @user 1d timeout for spam\`\`\``,
 
-    //permissions:['ADMINISTRATOR'],
+    //permissions:['MODERATE_MEMBERS'],
 
     expectedArgs: '<user> <time> [reason]',
 
